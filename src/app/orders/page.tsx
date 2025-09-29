@@ -1,8 +1,8 @@
-import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import InventoryManager from '@/components/InventoryManager'
+import { createClient } from '@/lib/supabase/server'
+import OrderManager from '@/components/OrderManager'
 
-export default async function InventoryPage() {
+export default async function OrdersPage() {
   const supabase = await createClient()
 
   const {
@@ -22,9 +22,9 @@ export default async function InventoryPage() {
               <a href="/dashboard" className="text-indigo-600 hover:text-indigo-500">
                 ← Dashboard
               </a>
-              <h1 className="text-xl font-semibold text-gray-900">Inventory Management</h1>
-              <a href="/orders" className="text-gray-600 hover:text-gray-800">
-                Orders
+              <h1 className="text-xl font-semibold text-gray-900">Order Management</h1>
+              <a href="/inventory" className="text-gray-600 hover:text-gray-800">
+                Inventory
               </a>
             </div>
             <div className="flex items-center">
@@ -35,7 +35,7 @@ export default async function InventoryPage() {
       </nav>
 
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <InventoryManager />
+        <OrderManager />
       </main>
     </div>
   )

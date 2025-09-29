@@ -34,3 +34,44 @@ export interface StockUpdateForm {
   amount: number
   notes?: string
 }
+
+export interface Order {
+  id: string
+  user_id: string
+  supplier_name: string
+  order_date: string
+  expected_arrival_date?: string
+  tracking_number?: string
+  status: 'pending' | 'shipped' | 'delivered' | 'completed' | 'cancelled'
+  notes?: string
+  total_amount?: number
+  created_at: string
+  updated_at: string
+  order_items?: OrderItem[]
+}
+
+export interface OrderItem {
+  id: string
+  order_id: string
+  product_id: string
+  quantity: number
+  unit_price?: number
+  notes?: string
+  created_at: string
+  product?: Product
+}
+
+export interface CreateOrderForm {
+  supplier_name: string
+  expected_arrival_date?: string
+  tracking_number?: string
+  notes?: string
+  items: CreateOrderItemForm[]
+}
+
+export interface CreateOrderItemForm {
+  product_id: string
+  quantity: number
+  unit_price?: number
+  notes?: string
+}

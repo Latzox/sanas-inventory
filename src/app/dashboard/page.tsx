@@ -66,19 +66,21 @@ export default async function Dashboard() {
                 </a>
               </div>
 
-              {/* Features Coming Soon Card */}
+              {/* Order Management Card */}
               <div className="bg-white p-6 rounded-lg shadow">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Coming Soon</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">Order Management</h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  More features will be added to enhance your experience.
+                  Track orders, manage deliveries, and automatically update inventory.
                 </p>
-                <div className="text-sm text-gray-500">
-                  <ul className="list-disc list-inside space-y-1">
-                    <li>Reports & Analytics</li>
-                    <li>Export Data</li>
-                    <li>Stock Alerts</li>
-                  </ul>
-                </div>
+                <a
+                  href="/orders"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  Manage Orders
+                </a>
               </div>
             </div>
           </div>
