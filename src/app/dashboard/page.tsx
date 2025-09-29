@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import LogoutButton from '@/components/LogoutButton'
 
 export default async function Dashboard() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const {
     data: { user },

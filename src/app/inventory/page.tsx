@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import InventoryManager from '@/components/InventoryManager'
 
 export default async function InventoryPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const {
     data: { user },
