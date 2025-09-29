@@ -1,19 +1,46 @@
 'use client'
 
 import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import type { Product } from '@/types/inventory'
 import StockUpdateModal from './StockUpdateModal'
 
 interface ProductListProps {
   products: Product[]
   onProductUpdated: () => void
+  onProductDeleted: () => void
 }
 
-export default function ProductList({ products, onProductUpdated }: ProductListProps) {
+export default function ProductList({ products, onProductUpdated, onProductDeleted }: ProductListProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [deletingProduct, setDeletingProduct] = useState<string | null>(null)
+  const supabase = createClient()
 
   const formatStock = (stock: number, unit: string) => {
     return `${stock.toFixed(3)} ${unit}`
+  }
+
+  const handleDeleteProduct = async (productId: string, productName: string) => {
+    if (!confirm(`Are you sure you want to delete "${productName}"? This action cannot be undone.`)) {
+      return
+    }
+
+    setDeletingProduct(productId)
+    try {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', productId)
+
+      if (error) throw error
+
+      onProductDeleted()
+    } catch (err) {
+      console.error('Error deleting product:', err)
+      alert('Failed to delete product. Please try again.')
+    } finally {
+      setDeletingProduct(null)
+    }
   }
 
   const isLowStock = (product: Product) => {
@@ -106,6 +133,13 @@ export default function ProductList({ products, onProductUpdated }: ProductListP
                       className="text-indigo-600 hover:text-indigo-900"
                     >
                       Update Stock
+                    </button>
+                    <button
+                      onClick={() => handleDeleteProduct(product.id, product.name)}
+                      disabled={deletingProduct === product.id}
+                      className="text-red-600 hover:text-red-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {deletingProduct === product.id ? 'Deleting...' : 'Delete'}
                     </button>
                   </td>
                 </tr>

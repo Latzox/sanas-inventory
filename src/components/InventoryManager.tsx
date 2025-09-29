@@ -44,6 +44,10 @@ export default function InventoryManager() {
     fetchProducts()
   }
 
+  const handleProductDeleted = () => {
+    fetchProducts()
+  }
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -83,6 +87,7 @@ export default function InventoryManager() {
       <ProductList
         products={products}
         onProductUpdated={handleProductUpdated}
+        onProductDeleted={handleProductDeleted}
       />
     </div>
   )
