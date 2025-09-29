@@ -215,7 +215,7 @@ export default function CreateOrderForm({ products, onOrderCreated, onCancel }: 
 
           {formData.items.length === 0 ? (
             <div className="text-gray-500 text-center py-4 border-2 border-dashed border-gray-300 rounded-md">
-              No items added. Click "Add Item" to start.
+              No items added. Click &quot;Add Item&quot; to start.
             </div>
           ) : (
             <div className="space-y-4">
